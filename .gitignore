@@ -32,9 +32,9 @@
 /public/assets
 
 # Ignore master key for decrypting credentials and more.
-# /config/master.key
+/config/master.key
 /config/database.yml
-# /config/application.yml
+/config/application.yml
 .byebug_history
 
 /config/master.key
