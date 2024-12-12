@@ -1,0 +1,50 @@
+<h1 class="text-center"><%= I18n.t('index.title') %></h1>
+
+<%= link_to I18n.t('index.new_game_btn'), new_game_path, class: 'btn btn-primary' %>
+<%= form_with(url: games_path, method: :get, class: 'mb-4') do %>
+  <div class="row pt-3">
+    <!-- Search input -->
+    <div class="col-md-6">
+      <div class="input-group">
+        <input type="text" name="filter[name]" class="form-control" value="<%= params.dig(:filter, :name) %>" placeholder="Search by name">
+        <button class="btn btn-primary" type="submit">Search</button>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <%= select_tag :status, options_for_select(Game.statuses.values, params.dig(:filter, :status)), name: 'filter[status]', class: "form-control", include_blank: "All Statuses" %>
+    </div>
+
+    <!-- Reset Filters Button -->
+    <div class="col-md-3">
+      <%= link_to 'Reset Filters', games_path, class: 'btn btn-secondary w-100' %>
+    </div>
+  </div>
+<% end %>
+
+<table class="table table-bordered mt-3">
+  <thead>
+    <tr>
+      <th class="text-center">#</th>
+      <th class="text-center"><%= I18n.t('index.games.name') %></th>
+      <th class="text-center"><%= I18n.t('index.games.email') %></th>
+      <th class="text-center"><%= I18n.t('index.games.created_at') %></th>
+      <th class="text-center"><%= I18n.t('index.games.status') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @games.each do |game| %>
+      <tr>
+        <td class="text-center"><%= game.id %></td>
+        <td class="text-center"><%= link_to game.name, game_path(game) %></td>
+        <td class="text-center"><%= game.email %></td>
+        <td class="text-center"><%= datetime_formatted(game.created_at) %></td>
+        <td class="text-center"><%= status_label(game.status) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="d-flex justify-content-center mt-4">
+  <%= paginate @games %>
+</div>
