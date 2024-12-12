@@ -36,3 +36,5 @@
 # /config/database.yml
 /config/application.yml
 .byebug_history
+
+/config/master.key
