@@ -3,8 +3,8 @@ Minesweeper Game
 ## Usage
 - Database: PostgreSQL
 - Rails version: 7.1.4
-- Ruby version: 3.1.4
-- Domain: https://innovators-minesweeper-game-b07c6ca2a9ca.herokuapp.com/
+- Ruby version: 3.2.2
+- Demo: https://floating-headland-67545-f86c6d8aaffe.herokuapp.com
 
 ## Feature
 - [X] New Game
